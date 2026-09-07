@@ -1,0 +1,15 @@
+{
+  "schema_version": "1.0",
+  "profile": "deep",
+  "budget_ms": 10000,
+  "network_scope": "system",
+  "targets": [{"name": "signed.test.invalid", "types": ["A"]}],
+  "resolvers": [{"id": "fixture", "endpoint": "udp://127.0.0.1:5300"}],
+  "tests": ["DNS.BASIC", "DNS.NEGATIVE", "DNS.DNSSEC_BEHAVIOR"],
+  "fixtures": [
+    {"id": "negative", "name": "absent.test.invalid", "kind": "nxdomain", "type": "A", "rcode": "NXDOMAIN", "expires_at": "2026-09-30T00:00:00Z"},
+    {"id": "signed", "name": "signed.test.invalid", "kind": "signed", "type": "A", "rcode": "NOERROR", "answers": ["192.0.2.1"], "expires_at": "2026-09-30T00:00:00Z"}
+  ],
+  "expectations": [{"target": "signed.test.invalid", "type": "A", "rcode": "NOERROR", "min_answers": 1, "answers": ["192.0.2.1"]}],
+  "output": {"agent": true}
+}

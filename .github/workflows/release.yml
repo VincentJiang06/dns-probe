@@ -1,0 +1,35 @@
+name: draft release
+on:
+  push:
+    tags: ['v*']
+permissions:
+  contents: read
+jobs:
+  verify:
+    uses: ./.github/workflows/tests.yml
+  release:
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: '3.14'
+      - run: uv sync --locked
+      - name: Check tag matches package version
+        env:
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          uv run --no-sync python -c 'import os,tomllib; from pathlib import Path; v=tomllib.loads(Path("pyproject.toml").read_text())["project"]["version"]; assert os.environ["RELEASE_TAG"] == "v"+v, "Tag/package version mismatch"'
+      - run: uv run --no-sync python -m build --no-isolation
+      - run: uv run --no-sync python scripts/check_distribution.py
+      - run: uv run --no-sync python scripts/prepare_release.py --output release --require-license
+      - name: Create reviewable GitHub draft
+        env:
+          GH_TOKEN: ${{ github.token }}
+          RELEASE_TAG: ${{ github.ref_name }}
+        run: |
+          gh release create "$RELEASE_TAG" dist/*.whl dist/*.tar.gz dist/SHA256SUMS release/dns-probe-source.zip release/source-manifest.json --verify-tag --draft --title "$RELEASE_TAG" --notes-file CHANGELOG.md

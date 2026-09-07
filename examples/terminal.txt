@@ -1,0 +1,25 @@
+Synthetic example from a local loopback DNS fixture; not a public-network benchmark.
+
+DNS Probe 1.2.0
+Required DNS checks passed
+
+Execution: completed | Assessment: pass
+Elapsed: 160.15 ms | Exit: 0 | Stop: -
+Coverage: 3/3 completed; 0 inconclusive; 0 skipped; 0 errors
+
+Observed probes (all attempts; replies do not imply DNS success)
+Path                        Protocol      Family        Replies   Failed    Cancelled
+--------------------------  ------------  ------------  --------  --------  ----------
+fixture                     udp           ipv4          5         0         0
+
+Observed answer records (repeat rows collapsed)
+Path/protocol   Owner                     Type      TTL (s)   Value / response
+--------------  ------------------------  --------  --------  --------------------------------
+fixture/udp     example.test.             A         60        192.0.2.10
+Full values and every attempt: --detail full --json (observations[].answers).
+
+Repeat samples (cache state unknown; latency in ms)
+Path                        Replies   Failed    Cancelled   p50         p95
+--------------------------  --------  --------  ----------  ----------  ----------
+fixture                     3         0         0           0.36        -
+p95 needs 20 successful samples; '-' means unavailable.

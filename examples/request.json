@@ -1,0 +1,11 @@
+{
+  "schema_version": "1.0",
+  "profile": "quick",
+  "budget_ms": 5000,
+  "network_scope": "system",
+  "targets": [{"name": "example.com", "types": ["A", "AAAA"]}],
+  "resolvers": [{"id": "system", "endpoint": "system"}],
+  "tests": ["RESOLVE.SYSTEM", "PERF.SAMPLE"],
+  "limits": {"max_attempts": 80, "concurrency": 8, "per_endpoint": 2},
+  "output": {"agent": true}
+}

@@ -1,0 +1,72 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.2.0",
+  "catalog_version": "2026-09-07",
+  "ruleset_version": "1",
+  "profile_version": "1",
+  "implementation_fingerprint": "77f896425f8b972293059c715f2a41cdd3e1214b2819245e8322272f164a23f5",
+  "run_id": "61555ea5-e957-4145-899f-900fb0070d1f",
+  "started_at": "2026-09-07T13:48:11.530644Z",
+  "duration_ms": 160.149,
+  "execution": {
+    "status": "completed",
+    "stop_reason": null,
+    "exit_code": 0
+  },
+  "assessment": {
+    "status": "pass",
+    "scope": "requested_targets_on_current_network"
+  },
+  "coverage": {
+    "planned": 3,
+    "completed": 3,
+    "inconclusive": 0,
+    "skipped": 0,
+    "error": 0,
+    "sufficient_for_assessment": true,
+    "required_unresolved": [],
+    "not_selected": [
+      "APP.CONNECT",
+      "DNS.CACHE",
+      "DNS.CNAME",
+      "DNS.CONSISTENCY",
+      "DNS.DELEGATION",
+      "DNS.DNS64",
+      "DNS.DNSSEC_BEHAVIOR",
+      "DNS.DNSSEC_VALIDATE",
+      "DNS.ECS",
+      "DNS.IDENTITY",
+      "DNS.NEGATIVE",
+      "DNS.RECORDS",
+      "DNS.TCP",
+      "DNS.TRUNCATION",
+      "ENV.PROXY_PATH",
+      "ENV.SYSTEM",
+      "IDENTITY.OBSERVE",
+      "RESOLVE.SYSTEM",
+      "TRANSPORT.DOH",
+      "TRANSPORT.DOQ",
+      "TRANSPORT.DOT"
+    ]
+  },
+  "summary": {
+    "headline": "Required DNS checks passed",
+    "recommended_resolver_id": null,
+    "recommendation_reason": "insufficient_comparable_samples"
+  },
+  "findings": [],
+  "next_actions": [],
+  "artifacts": {
+    "report_path": null,
+    "evidence_path": null
+  },
+  "errors": [],
+  "omitted": {
+    "findings": 0,
+    "next_actions": 0,
+    "errors": 0,
+    "checks": 3,
+    "observations": 5
+  },
+  "truncated": true
+}

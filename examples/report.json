@@ -1,0 +1,530 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "1.2.0",
+  "catalog_version": "2026-09-07",
+  "ruleset_version": "1",
+  "profile_version": "1",
+  "run_id": "61555ea5-e957-4145-899f-900fb0070d1f",
+  "started_at": "2026-09-07T13:48:11.530644Z",
+  "duration_ms": 160.149,
+  "execution": {
+    "status": "completed",
+    "stop_reason": null,
+    "exit_code": 0
+  },
+  "assessment": {
+    "status": "pass",
+    "scope": "requested_targets_on_current_network"
+  },
+  "coverage": {
+    "planned": 3,
+    "completed": 3,
+    "inconclusive": 0,
+    "skipped": 0,
+    "error": 0,
+    "sufficient_for_assessment": true,
+    "required_unresolved": [],
+    "not_selected": [
+      "APP.CONNECT",
+      "DNS.CACHE",
+      "DNS.CNAME",
+      "DNS.CONSISTENCY",
+      "DNS.DELEGATION",
+      "DNS.DNS64",
+      "DNS.DNSSEC_BEHAVIOR",
+      "DNS.DNSSEC_VALIDATE",
+      "DNS.ECS",
+      "DNS.IDENTITY",
+      "DNS.NEGATIVE",
+      "DNS.RECORDS",
+      "DNS.TCP",
+      "DNS.TRUNCATION",
+      "ENV.PROXY_PATH",
+      "ENV.SYSTEM",
+      "IDENTITY.OBSERVE",
+      "RESOLVE.SYSTEM",
+      "TRANSPORT.DOH",
+      "TRANSPORT.DOQ",
+      "TRANSPORT.DOT"
+    ]
+  },
+  "summary": {
+    "headline": "Required DNS checks passed",
+    "recommended_resolver_id": null,
+    "recommendation_reason": "insufficient_comparable_samples"
+  },
+  "findings": [],
+  "next_actions": [],
+  "artifacts": {
+    "report_path": null,
+    "evidence_path": null
+  },
+  "errors": [],
+  "checks": [
+    {
+      "id": "DNS.BASIC:fixture:example.test:A",
+      "test_id": "DNS.BASIC",
+      "target_id": "example.test",
+      "path_id": "fixture",
+      "qtype": "A",
+      "status": "pass",
+      "required": true,
+      "evidence_ids": [
+        "obs-00001"
+      ],
+      "reason_code": null
+    },
+    {
+      "id": "PERF.SAMPLE:fixture:example.test:",
+      "test_id": "PERF.SAMPLE",
+      "target_id": "example.test",
+      "path_id": "fixture",
+      "status": "pass",
+      "evidence_ids": [
+        "obs-00001",
+        "obs-00002",
+        "obs-00003",
+        "obs-00004"
+      ],
+      "reason_code": null,
+      "required": true,
+      "metrics": {
+        "success_count": 4,
+        "failure_count": 0,
+        "cancelled_count": 0,
+        "sample_count": 4,
+        "response_rate": 1.0,
+        "p50_ms": 0.492,
+        "p95_ms": null,
+        "p99_ms": null,
+        "max_ms": 0.93,
+        "cache_state": "unknown",
+        "metric": "attempt_total",
+        "rcodes": {
+          "NOERROR": 4
+        },
+        "semantic_success_count": 4
+      }
+    },
+    {
+      "id": "DNS.EDNS:fixture:example.test:",
+      "test_id": "DNS.EDNS",
+      "target_id": "example.test",
+      "path_id": "fixture",
+      "status": "pass",
+      "evidence_ids": [
+        "obs-00005"
+      ],
+      "reason_code": null,
+      "required": true,
+      "details": {
+        "ede": [],
+        "edns": 0
+      }
+    }
+  ],
+  "observations": [
+    {
+      "id": "obs-00001",
+      "check_id": "DNS.BASIC:fixture:example.test:A",
+      "path_id": "fixture",
+      "target_id": "example.test",
+      "qname": "example.test",
+      "qtype": "A",
+      "outcome": "response",
+      "error": null,
+      "timing": {
+        "total_ms": 0.93,
+        "queue_ms": 0.032
+      },
+      "attempt_index": 0,
+      "sample_kind": "diagnostic",
+      "rcode": "NOERROR",
+      "flags": [
+        "QR",
+        "RD"
+      ],
+      "answers": [
+        {
+          "name": "example.test.",
+          "type": "A",
+          "ttl": 60,
+          "values": [
+            "192.0.2.10"
+          ]
+        }
+      ],
+      "authority": [],
+      "additional": [],
+      "ede": [],
+      "peer_ip": "127.0.0.1",
+      "transport": "udp",
+      "address_family": "ipv4",
+      "connection_state": "new",
+      "ignored_packets": 0,
+      "proxy_mode": "direct",
+      "wire_attempts_observable": true,
+      "bootstrap": null,
+      "query_flags": [
+        "RD"
+      ],
+      "source_address": null,
+      "interface_scope": null,
+      "bind_mode": "default",
+      "route_selection": "kernel_selected",
+      "edns_options": [],
+      "edns_version": 0,
+      "edns_payload": 8192,
+      "response_wire_b64": "Xn2BAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "records_truncated": false,
+      "timeout_ms": 800
+    },
+    {
+      "id": "obs-00002",
+      "check_id": "PERF.SAMPLE:fixture:example.test:",
+      "path_id": "fixture",
+      "target_id": "example.test",
+      "qname": "example.test",
+      "qtype": "A",
+      "outcome": "response",
+      "error": null,
+      "timing": {
+        "total_ms": 0.36,
+        "queue_ms": 0.016
+      },
+      "attempt_index": 0,
+      "sample_kind": "repeat_observed",
+      "rcode": "NOERROR",
+      "flags": [
+        "QR",
+        "RD"
+      ],
+      "answers": [
+        {
+          "name": "example.test.",
+          "type": "A",
+          "ttl": 60,
+          "values": [
+            "192.0.2.10"
+          ]
+        }
+      ],
+      "authority": [],
+      "additional": [],
+      "ede": [],
+      "peer_ip": "127.0.0.1",
+      "transport": "udp",
+      "address_family": "ipv4",
+      "connection_state": "new",
+      "ignored_packets": 0,
+      "proxy_mode": "direct",
+      "wire_attempts_observable": true,
+      "bootstrap": null,
+      "query_flags": [
+        "RD"
+      ],
+      "source_address": null,
+      "interface_scope": null,
+      "bind_mode": "default",
+      "route_selection": "kernel_selected",
+      "edns_options": [],
+      "edns_version": 0,
+      "edns_payload": 8192,
+      "response_wire_b64": "6aCBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "records_truncated": false,
+      "timeout_ms": 800
+    },
+    {
+      "id": "obs-00003",
+      "check_id": "PERF.SAMPLE:fixture:example.test:",
+      "path_id": "fixture",
+      "target_id": "example.test",
+      "qname": "example.test",
+      "qtype": "A",
+      "outcome": "response",
+      "error": null,
+      "timing": {
+        "total_ms": 0.341,
+        "queue_ms": 0.013
+      },
+      "attempt_index": 0,
+      "sample_kind": "repeat_observed",
+      "rcode": "NOERROR",
+      "flags": [
+        "QR",
+        "RD"
+      ],
+      "answers": [
+        {
+          "name": "example.test.",
+          "type": "A",
+          "ttl": 60,
+          "values": [
+            "192.0.2.10"
+          ]
+        }
+      ],
+      "authority": [],
+      "additional": [],
+      "ede": [],
+      "peer_ip": "127.0.0.1",
+      "transport": "udp",
+      "address_family": "ipv4",
+      "connection_state": "new",
+      "ignored_packets": 0,
+      "proxy_mode": "direct",
+      "wire_attempts_observable": true,
+      "bootstrap": null,
+      "query_flags": [
+        "RD"
+      ],
+      "source_address": null,
+      "interface_scope": null,
+      "bind_mode": "default",
+      "route_selection": "kernel_selected",
+      "edns_options": [],
+      "edns_version": 0,
+      "edns_payload": 8192,
+      "response_wire_b64": "aiSBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "records_truncated": false,
+      "timeout_ms": 800
+    },
+    {
+      "id": "obs-00004",
+      "check_id": "PERF.SAMPLE:fixture:example.test:",
+      "path_id": "fixture",
+      "target_id": "example.test",
+      "qname": "example.test",
+      "qtype": "A",
+      "outcome": "response",
+      "error": null,
+      "timing": {
+        "total_ms": 0.625,
+        "queue_ms": 0.014
+      },
+      "attempt_index": 0,
+      "sample_kind": "repeat_observed",
+      "rcode": "NOERROR",
+      "flags": [
+        "QR",
+        "RD"
+      ],
+      "answers": [
+        {
+          "name": "example.test.",
+          "type": "A",
+          "ttl": 60,
+          "values": [
+            "192.0.2.10"
+          ]
+        }
+      ],
+      "authority": [],
+      "additional": [],
+      "ede": [],
+      "peer_ip": "127.0.0.1",
+      "transport": "udp",
+      "address_family": "ipv4",
+      "connection_state": "new",
+      "ignored_packets": 0,
+      "proxy_mode": "direct",
+      "wire_attempts_observable": true,
+      "bootstrap": null,
+      "query_flags": [
+        "RD"
+      ],
+      "source_address": null,
+      "interface_scope": null,
+      "bind_mode": "default",
+      "route_selection": "kernel_selected",
+      "edns_options": [],
+      "edns_version": 0,
+      "edns_payload": 8192,
+      "response_wire_b64": "RYqBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "records_truncated": false,
+      "timeout_ms": 800
+    },
+    {
+      "id": "obs-00005",
+      "check_id": "DNS.EDNS:fixture:example.test:",
+      "path_id": "fixture",
+      "target_id": "example.test",
+      "qname": "example.test",
+      "qtype": "A",
+      "outcome": "response",
+      "error": null,
+      "timing": {
+        "total_ms": 0.705,
+        "queue_ms": 97.983
+      },
+      "attempt_index": 0,
+      "sample_kind": "diagnostic",
+      "rcode": "NOERROR",
+      "flags": [
+        "QR",
+        "RD"
+      ],
+      "answers": [
+        {
+          "name": "example.test.",
+          "type": "A",
+          "ttl": 60,
+          "values": [
+            "192.0.2.10"
+          ]
+        }
+      ],
+      "authority": [],
+      "additional": [],
+      "ede": [],
+      "peer_ip": "127.0.0.1",
+      "transport": "udp",
+      "address_family": "ipv4",
+      "connection_state": "new",
+      "ignored_packets": 0,
+      "proxy_mode": "direct",
+      "wire_attempts_observable": true,
+      "bootstrap": null,
+      "query_flags": [
+        "RD"
+      ],
+      "source_address": null,
+      "interface_scope": null,
+      "bind_mode": "default",
+      "route_selection": "kernel_selected",
+      "edns_options": [],
+      "edns_version": 0,
+      "edns_payload": 8192,
+      "response_wire_b64": "mneBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "records_truncated": false,
+      "timeout_ms": 800
+    }
+  ],
+  "environment": {
+    "platform": "synthetic-example",
+    "system_resolvers": [],
+    "private_domains": [],
+    "interfaces": [],
+    "warnings": [],
+    "proxy": {
+      "mode": "fixture",
+      "environment_proxy_used": false
+    },
+    "container_hint": false,
+    "wsl_hint": false
+  },
+  "effective_config": {
+    "schema_version": "1.0",
+    "profile": "quick",
+    "workload": "general",
+    "budget_ms": 1000,
+    "targets": [
+      {
+        "name": "example.test",
+        "types": [
+          "A"
+        ],
+        "allow_public": false
+      }
+    ],
+    "resolvers": [
+      {
+        "id": "fixture",
+        "endpoint": "udp://127.0.0.1:55255",
+        "bootstrap_ips": []
+      }
+    ],
+    "tests": [
+      "DNS.BASIC",
+      "PERF.SAMPLE",
+      "DNS.EDNS"
+    ],
+    "network_scope": "system",
+    "public_comparison": false,
+    "limits": {
+      "max_attempts": 80,
+      "concurrency": 24,
+      "per_endpoint": 4,
+      "rate": 40,
+      "endpoint_rate": 10
+    },
+    "expectations": [],
+    "fail_on": "error"
+  },
+  "implementation_fingerprint": "77f896425f8b972293059c715f2a41cdd3e1214b2819245e8322272f164a23f5",
+  "plan": {
+    "profile": "quick",
+    "workload": "general",
+    "tests": [
+      "DNS.BASIC",
+      "DNS.EDNS",
+      "PERF.SAMPLE"
+    ],
+    "paths": [
+      {
+        "id": "fixture",
+        "endpoint": "udp://127.0.0.1:55255",
+        "bootstrap_ips": [],
+        "source": "explicit"
+      }
+    ],
+    "targets": [
+      {
+        "name": "example.test",
+        "types": [
+          "A"
+        ],
+        "allow_public": false
+      }
+    ],
+    "checks": [
+      {
+        "id": "DNS.BASIC:fixture:example.test:A",
+        "test_id": "DNS.BASIC",
+        "target_id": "example.test",
+        "path_id": "fixture",
+        "qtype": "A",
+        "status": "pending",
+        "required": true,
+        "evidence_ids": [],
+        "reason_code": null
+      }
+    ],
+    "limits": {
+      "max_attempts": 80,
+      "concurrency": 24,
+      "per_endpoint": 4,
+      "rate": 40,
+      "endpoint_rate": 10
+    },
+    "budget_ms": 1000,
+    "estimated_attempts_upper_bound": 16,
+    "omitted_paths": [],
+    "network_access": false,
+    "warnings": []
+  },
+  "statistics": {
+    "fixture": {
+      "success_count": 3,
+      "failure_count": 0,
+      "cancelled_count": 0,
+      "sample_count": 3,
+      "response_rate": 1.0,
+      "p50_ms": 0.36,
+      "p95_ms": null,
+      "p99_ms": null,
+      "max_ms": 0.625,
+      "cache_state": "unknown",
+      "metric": "attempt_total",
+      "rcodes": {
+        "NOERROR": 3
+      }
+    }
+  },
+  "cost": {
+    "dns_attempts": 5,
+    "auxiliary_calls": 0,
+    "system_wire_attempts_observable": false
+  },
+  "config_hash": "567a440236b70f0f61606a41b06f7d4078f37fa1b6871c4439f9058967300a2b"
+}

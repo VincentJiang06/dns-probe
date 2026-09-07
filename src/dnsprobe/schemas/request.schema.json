@@ -1,0 +1,597 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://dnsprobe.invalid/schemas/1.0/request.schema.json",
+  "title": "DNSProbe request v1",
+  "type": "object",
+  "properties": {
+    "schema_version": {
+      "type": "string",
+      "pattern": "^1\\.\\d+$"
+    },
+    "profile": {
+      "type": "string",
+      "enum": [
+        "deep",
+        "quick",
+        "standard"
+      ]
+    },
+    "workload": {
+      "type": "string",
+      "enum": [
+        "custom",
+        "general",
+        "hong-kong",
+        "mainland"
+      ]
+    },
+    "budget_ms": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 600000
+    },
+    "targets": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "types": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "enum": [
+                "A",
+                "AAAA",
+                "ANY",
+                "CAA",
+                "CNAME",
+                "DNAME",
+                "DNSKEY",
+                "DS",
+                "HTTPS",
+                "MX",
+                "NAPTR",
+                "NS",
+                "NSEC",
+                "NSEC3",
+                "PTR",
+                "RRSIG",
+                "SOA",
+                "SRV",
+                "SVCB",
+                "TLSA",
+                "TXT"
+              ]
+            },
+            "maxItems": 32,
+            "minItems": 1
+          },
+          "allow_public": {
+            "type": "boolean"
+          },
+          "app": {
+            "type": "object",
+            "properties": {
+              "port": {
+                "type": "integer",
+                "minimum": 1,
+                "maximum": 65535
+              },
+              "tls": {
+                "type": "boolean"
+              },
+              "server_name": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              },
+              "ca_file": {
+                "type": "string",
+                "minLength": 1,
+                "maxLength": 4096
+              }
+            },
+            "required": [],
+            "additionalProperties": false
+          }
+        },
+        "required": [
+          "name"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100,
+      "minItems": 0
+    },
+    "resolvers": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_.-]{1,100}$"
+          },
+          "endpoint": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "bootstrap_ips": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 8,
+            "minItems": 0
+          },
+          "ca_file": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "endpoint"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 8,
+      "minItems": 0
+    },
+    "tests": {
+      "oneOf": [
+        {
+          "type": "string",
+          "enum": [
+            "all",
+            "auto"
+          ]
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "APP.CONNECT",
+              "DNS.BASIC",
+              "DNS.CACHE",
+              "DNS.CNAME",
+              "DNS.CONSISTENCY",
+              "DNS.DELEGATION",
+              "DNS.DNS64",
+              "DNS.DNSSEC_BEHAVIOR",
+              "DNS.DNSSEC_VALIDATE",
+              "DNS.ECS",
+              "DNS.EDNS",
+              "DNS.IDENTITY",
+              "DNS.NEGATIVE",
+              "DNS.RECORDS",
+              "DNS.TCP",
+              "DNS.TRUNCATION",
+              "ENV.PROXY_PATH",
+              "ENV.SYSTEM",
+              "IDENTITY.OBSERVE",
+              "PERF.SAMPLE",
+              "RESOLVE.SYSTEM",
+              "TRANSPORT.DOH",
+              "TRANSPORT.DOQ",
+              "TRANSPORT.DOT"
+            ]
+          },
+          "maxItems": 64,
+          "minItems": 0
+        }
+      ]
+    },
+    "network_scope": {
+      "type": "string",
+      "enum": [
+        "all",
+        "private",
+        "public",
+        "system"
+      ]
+    },
+    "public_comparison": {
+      "type": "boolean"
+    },
+    "limits": {
+      "type": "object",
+      "properties": {
+        "max_attempts": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 100000
+        },
+        "concurrency": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 256
+        },
+        "per_endpoint": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 32
+        },
+        "rate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        },
+        "endpoint_rate": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "expectations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "target": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "A",
+              "AAAA",
+              "ANY",
+              "CAA",
+              "CNAME",
+              "DNAME",
+              "DNSKEY",
+              "DS",
+              "HTTPS",
+              "MX",
+              "NAPTR",
+              "NS",
+              "NSEC",
+              "NSEC3",
+              "PTR",
+              "RRSIG",
+              "SOA",
+              "SRV",
+              "SVCB",
+              "TLSA",
+              "TXT"
+            ]
+          },
+          "rcode": {
+            "type": "string",
+            "enum": [
+              "BADCOOKIE",
+              "BADVERS",
+              "FORMERR",
+              "NOERROR",
+              "NOTAUTH",
+              "NOTIMP",
+              "NOTZONE",
+              "NXDOMAIN",
+              "NXRRSET",
+              "REFUSED",
+              "SERVFAIL",
+              "YXDOMAIN",
+              "YXRRSET"
+            ]
+          },
+          "min_answers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "max_answers": {
+            "type": "integer",
+            "minimum": 0,
+            "maximum": 10000
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 100,
+            "minItems": 0
+          },
+          "resolver_id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "required": {
+            "type": "boolean"
+          },
+          "ad": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "target"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 500,
+      "minItems": 0
+    },
+    "fail_on": {
+      "type": "string",
+      "enum": [
+        "error",
+        "never",
+        "warning"
+      ]
+    },
+    "fixtures": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "A",
+              "AAAA",
+              "ANY",
+              "CAA",
+              "CNAME",
+              "DNAME",
+              "DNSKEY",
+              "DS",
+              "HTTPS",
+              "MX",
+              "NAPTR",
+              "NS",
+              "NSEC",
+              "NSEC3",
+              "PTR",
+              "RRSIG",
+              "SOA",
+              "SRV",
+              "SVCB",
+              "TLSA",
+              "TXT"
+            ]
+          },
+          "rcode": {
+            "type": "string",
+            "enum": [
+              "BADCOOKIE",
+              "BADVERS",
+              "FORMERR",
+              "NOERROR",
+              "NOTAUTH",
+              "NOTIMP",
+              "NOTZONE",
+              "NXDOMAIN",
+              "NXRRSET",
+              "REFUSED",
+              "SERVFAIL",
+              "YXDOMAIN",
+              "YXRRSET"
+            ]
+          },
+          "answers": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1,
+              "maxLength": 4096
+            },
+            "maxItems": 100,
+            "minItems": 0
+          },
+          "expires_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "kind": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "expires_at",
+          "kind"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 100,
+      "minItems": 0
+    },
+    "trust_anchors": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096
+          },
+          "type": {
+            "type": "string",
+            "enum": [
+              "DNSKEY",
+              "DS"
+            ]
+          },
+          "value": {
+            "type": "string",
+            "maxLength": 8192
+          }
+        },
+        "required": [
+          "name",
+          "type",
+          "value"
+        ],
+        "additionalProperties": false
+      },
+      "maxItems": 32,
+      "minItems": 0
+    },
+    "connect": {
+      "type": "boolean"
+    },
+    "ecs": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "records": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "enum": [
+          "A",
+          "AAAA",
+          "ANY",
+          "CAA",
+          "CNAME",
+          "DNAME",
+          "DNSKEY",
+          "DS",
+          "HTTPS",
+          "MX",
+          "NAPTR",
+          "NS",
+          "NSEC",
+          "NSEC3",
+          "PTR",
+          "RRSIG",
+          "SOA",
+          "SRV",
+          "SVCB",
+          "TLSA",
+          "TXT"
+        ]
+      },
+      "maxItems": 32,
+      "minItems": 1
+    },
+    "cname_max_depth": {
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 64
+    },
+    "delegation_roots": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 4096
+      },
+      "maxItems": 13,
+      "minItems": 1
+    },
+    "force_family": {
+      "type": "string",
+      "enum": [
+        "auto",
+        "ipv4",
+        "ipv6"
+      ]
+    },
+    "interface": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 4096
+    },
+    "session": {
+      "type": "object",
+      "properties": {
+        "duration_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600000
+        },
+        "interval_ms": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 3600000
+        },
+        "max_runs": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 1000
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    },
+    "output": {
+      "type": "object",
+      "properties": {
+        "format": {
+          "type": "string",
+          "enum": [
+            "json",
+            "ndjson",
+            "text"
+          ]
+        },
+        "detail": {
+          "type": "string",
+          "enum": [
+            "full",
+            "summary"
+          ]
+        },
+        "artifact_dir": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 4096
+        },
+        "agent": {
+          "type": "boolean"
+        },
+        "pretty": {
+          "type": "boolean",
+          "description": "Indent JSON by two spaces. Only valid with JSON output."
+        }
+      },
+      "allOf": [
+        {
+          "if": {
+            "required": ["pretty"],
+            "properties": {"pretty": {"const": true}}
+          },
+          "then": {"properties": {"format": {"const": "json"}}}
+        }
+      ],
+      "required": [],
+      "additionalProperties": false
+    }
+  },
+  "required": [],
+  "additionalProperties": false
+}

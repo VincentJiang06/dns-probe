@@ -1,0 +1,44 @@
+name: tests
+on:
+  push:
+    branches: ['**']
+  pull_request:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  test:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest, windows-latest]
+        python: ['3.11', '3.14']
+    runs-on: ${{ matrix.os }}
+    continue-on-error: ${{ matrix.os == 'windows-latest' }}
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: ${{ matrix.python }}
+      - run: uv sync --locked
+      - run: uv run --no-sync pytest -q --junitxml=test-results.xml
+      - run: uv run --no-sync python -m build --no-isolation
+      - run: uv run --no-sync python scripts/check_distribution.py
+      - name: Install wheel outside source environment
+        shell: bash
+        run: |
+          uv venv .wheel-smoke
+          if [ "$RUNNER_OS" = "Windows" ]; then
+            wheel_python=".wheel-smoke/Scripts/python.exe"
+          else
+            wheel_python=".wheel-smoke/bin/python"
+          fi
+          uv pip install --python "$wheel_python" dist/*.whl
+          "$wheel_python" -I -m dnsprobe capabilities --json
+          "$wheel_python" -I -m dnsprobe schema --kind request --json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: tests-${{ matrix.os }}-py${{ matrix.python }}
+          path: test-results.xml

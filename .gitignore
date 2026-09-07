@@ -1,0 +1,35 @@
+.venv/
+.uv-cache/
+__pycache__/
+.pytest_cache/
+dist/
+*.egg-info/
+.coverage
+.artifacts/
+
+# Local network evidence and unrelated workspace material: never publish.
+/diagnostics-*/
+/surge-tuning-*/
+/skill-build/
+/dns_result*.json
+/dns_lab_result.json
+/hk_real_*.json
+.DS_Store
+.env
+.env.*
+*.pem
+*.key
+/release/
+/coverage.xml
+/htmlcov/
+
+# Maintainer design/review notes; public docs live in docs/.
+/SPEC.md
+/IMPLEMENTATION.md
+/PROJECT_REVIEW.md
+/RESEARCH.md
+/.wheel-smoke/
+/.venv311/
+/test-results.xml
+
+/vince-surge-config/
