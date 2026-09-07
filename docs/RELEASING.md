@@ -12,7 +12,7 @@ uv run --no-sync python scripts/check_distribution.py
 uv run --no-sync python scripts/prepare_release.py --require-license --output release
 ```
 
-`release/dns-probe-source.zip` contains publication source files. `release/source-manifest.json` lists each member's SHA-256 and the archive hash. Ordering and ZIP timestamps are deterministic. Symlinks are rejected. Local diagnostics, unrelated workspace material and private network reports are excluded.
+`release/dns-probe-source.zip` contains publication source files. `release/source-manifest.json` lists each member's SHA-256 and the archive hash. In a Git checkout, only tracked allowlisted paths are exported; Git failures stop the export. A snapshot without Git metadata retains the allowlist and still requires content scanning. Ordering and ZIP timestamps are deterministic. Symlinks are rejected. Local diagnostics, unrelated workspace material and private network reports are excluded.
 
 The export command never stages, commits or uploads files. For a new public repository, use the reviewed export or the exact allowlisted files in its manifest. Do not add all files from a mixed diagnostics workspace. The wheel and sdist in `dist/` have a separate `SHA256SUMS`.
 
@@ -47,7 +47,7 @@ That command creates a **public** repository and uploads committed source. Use `
 
 ## Draft release automation
 
-Push a `v<package-version>` tag after reviewing platform results. `.github/workflows/release.yml` waits for the test workflow, checks the tag/package match, builds wheel/sdist, validates schemas and archive contents, writes checksums and requires LICENSE. It creates a **draft** GitHub Release with these artifacts, the source ZIP, manifest and changelog. Review the draft before publishing it.
+Push a `v<package-version>` tag after reviewing platform results. `.github/workflows/release.yml` waits for the test and publication privacy workflows, checks the tag/package match, builds wheel/sdist, validates schemas and archive contents, writes checksums, requires the exported LICENSE, and scans unpacked release assets with Gitleaks. It creates a **draft** GitHub Release with these artifacts, the source ZIP, manifest and changelog. Review the draft before publishing it.
 
 No PyPI, Homebrew or container registry upload is configured. Those channels require control of the corresponding names and a separate publishing setup. A locally chosen Python package name is not a reservation on PyPI.
 
@@ -59,6 +59,8 @@ docker run --rm dns-probe:local example.com --human
 ```
 
 The image installs the same wheel and runs as a non-root user. Container diagnostics describe the container's network namespace. Docker Desktop does not automatically reproduce the host resolver path. See [validation](VALIDATION-1.2.md) for which builds and platforms were actually run.
+
+See [publication audit](PUBLICATION_AUDIT.md) for scan scope, regression cases and limitations.
 
 ## Compatibility
 

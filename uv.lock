@@ -238,7 +238,7 @@ wheels = [
 
 [[package]]
 name = "dns-probe"
-version = "1.2.0"
+version = "1.2.1"
 source = { editable = "." }
 dependencies = [
     { name = "dnspython", extra = ["dnssec", "doh", "doq"] },

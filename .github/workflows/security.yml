@@ -1,0 +1,24 @@
+name: publication privacy
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_call:
+permissions:
+  contents: read
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: ./.github/actions/setup-gitleaks
+      - name: Scan complete reachable history
+        run: gitleaks git . --log-opts='--all' --config .github/gitleaks.toml --ignore-gitleaks-allow --redact --no-banner
+      - name: Export and scan publication source
+        run: |
+          python3 scripts/prepare_release.py --require-license --output release
+          unzip -q release/dns-probe-source.zip -d "$RUNNER_TEMP/public-source"
+          gitleaks dir "$RUNNER_TEMP/public-source" --config .github/gitleaks.toml --ignore-gitleaks-allow --redact --no-banner

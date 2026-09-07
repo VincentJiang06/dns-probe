@@ -1,5 +1,7 @@
 """Export a reviewable source snapshot without local network evidence.
 
+Git checkouts export only tracked files that also match the source allowlist.
+Extracted snapshots without Git metadata use the same allowlist on their own.
 This module never publishes, stages files, or contacts a server.
 """
 from __future__ import annotations
@@ -7,7 +9,9 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
+import subprocess
 import sys
 import zipfile
 
@@ -16,7 +20,23 @@ DIRECTORIES = ('src', 'tests', 'docs', 'examples', 'scripts', '.github')
 SUFFIXES = frozenset(('.py', '.json', '.md', '.yml', '.yaml', '.toml', '.svg', '.txt'))
 
 
+def _tracked_files(root):
+    metadata = root / '.git'
+    if not metadata.exists() and not metadata.is_symlink():
+        return None  # Extracted source distributions retain the source allowlist.
+    environment = {key: value for key, value in os.environ.items() if not key.startswith('GIT_')}
+    try:
+        result = subprocess.run(
+            ['git', f'--git-dir={metadata}', f'--work-tree={root}', 'ls-files', '-z'],
+            cwd=root, env=environment, check=True, capture_output=True, timeout=10,
+        )
+    except (OSError, subprocess.SubprocessError) as exc:
+        raise ValueError('Git tracked-file discovery failed; refusing source export') from exc
+    return {os.fsdecode(name) for name in result.stdout.split(b'\0') if name}
+
+
 def _source_files(root):
+    tracked = _tracked_files(root)
     files = []
     for name in sorted(ROOT_FILES):
         path = root / name
@@ -33,10 +53,12 @@ def _source_files(root):
             if any(part.startswith('.') or part == '__pycache__' for part in relative.parts[1:]): continue
             if path.is_file() and path.suffix in SUFFIXES:
                 files.append(path)
+    if tracked is not None:
+        files = [path for path in files if path.relative_to(root).as_posix() in tracked]
     return sorted(files, key=lambda p:p.relative_to(root).as_posix())
 
 
-def export_source(root: Path, output: Path) -> dict:
+def export_source(root: Path, output: Path, *, require_license=False) -> dict:
     root, output = Path(root).resolve(), Path(output).resolve()
     if not root.is_dir(): raise ValueError('Source directory does not exist')
     if output == root or any(output == root / directory or (root / directory) in output.parents for directory in DIRECTORIES):
@@ -45,6 +67,8 @@ def export_source(root: Path, output: Path) -> dict:
     if not files: raise ValueError('No publishable source files found')
     # Collect and hash the exact bytes before any writes; symlink rejection is atomic.
     contents = {p.relative_to(root).as_posix():p.read_bytes() for p in files}
+    if require_license and 'LICENSE' not in contents:
+        raise ValueError('Select a license and include LICENSE in the publishable source files before public release')
     output.mkdir(parents=True,exist_ok=True)
     archive = output / 'dns-probe-source.zip'
     temporary = output / '.source.zip.tmp'
@@ -73,9 +97,7 @@ def main(argv=None):
     parser.add_argument('--require-license',action='store_true',help='Refuse a public release before a license is selected')
     args=parser.parse_args(argv)
     try:
-        if args.require_license and not (args.root/'LICENSE').is_file():
-            raise ValueError('Select a license and add LICENSE before public release')
-        print(json.dumps(export_source(args.root,args.output),separators=(',',':')))
+        print(json.dumps(export_source(args.root,args.output,require_license=args.require_license),separators=(',',':')))
         return 0
     except (OSError,ValueError) as exc:
         print(json.dumps({'error':str(exc)}),file=sys.stderr)

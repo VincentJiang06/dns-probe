@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.2.1 — 2026-09-08
+
+- Restrict source exports from Git checkouts to tracked files and require the exported license to be tracked. Preserve clean source-snapshot exports.
+- Validate wheel and sdist paths independently, including private file types, local reports, unsafe members and archive links.
+- Gate publication on pinned, checksum-verified Gitleaks scans of reachable history, exported source and unpacked wheel/sdist assets. Extend Docker exclusions for local secrets.
+- Record the repeated publication privacy audit and regression evidence.
+
+
 ## 1.2.0 — 2026-09-08
 
 - Publish the MIT project on GitHub; macOS/Linux CI passes all 187 tests on Python 3.11/3.14. Windows remains experimental with 9 known CI failures.

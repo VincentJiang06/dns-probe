@@ -1,13 +1,13 @@
 {
   "schema_version": "1.0",
-  "engine_version": "1.2.0",
+  "engine_version": "1.2.1",
   "catalog_version": "2026-09-07",
   "ruleset_version": "1",
   "profile_version": "1",
-  "implementation_fingerprint": "77f896425f8b972293059c715f2a41cdd3e1214b2819245e8322272f164a23f5",
-  "run_id": "61555ea5-e957-4145-899f-900fb0070d1f",
-  "started_at": "2026-09-07T13:48:11.530644Z",
-  "duration_ms": 160.149,
+  "implementation_fingerprint": "fd4f74a06a611067d255dd86c0cf884fe5986ff4d2d42bb1146b5b5861163d35",
+  "run_id": "3bbb59d7-fced-4e1a-ae88-dea85e8e8156",
+  "started_at": "2026-09-07T16:17:46.884731Z",
+  "duration_ms": 164.169,
   "execution": {
     "status": "completed",
     "stop_reason": null,

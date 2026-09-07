@@ -7,3 +7,5 @@ The maintained line is the latest 1.x release. This repository does not automati
 For a vulnerability, use [Security → Report a vulnerability](https://github.com/VincentJiang06/dns-probe/security/advisories/new), the enabled private reporting channel. Do not include exploit payloads or private network evidence in a public issue. If private reporting is unavailable, open an issue asking the maintainer to enable a private reporting channel, without sensitive details. No contact address is invented here.
 
 Useful reports include the affected version, minimal synthetic reproduction, impact and expected behavior. Ordinary DNS failures belong in bug reports; a timeout alone is not evidence of a security vulnerability.
+
+Publication checks and their limits are documented in [the privacy audit](docs/PUBLICATION_AUDIT.md). GitHub Release builds scan reachable history and unpacked artifacts before creating a draft.

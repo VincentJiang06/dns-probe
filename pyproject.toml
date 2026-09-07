@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "dns-probe"
-version = "1.2.0"
+version = "1.2.1"
 description = "DNS Probe: fast, bounded DNS diagnostics with readable answers and JSON evidence"
 license = "MIT"
 license-files = ["LICENSE"]

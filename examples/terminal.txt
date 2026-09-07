@@ -1,10 +1,10 @@
 Synthetic example from a local loopback DNS fixture; not a public-network benchmark.
 
-DNS Probe 1.2.0
+DNS Probe 1.2.1
 Required DNS checks passed
 
 Execution: completed | Assessment: pass
-Elapsed: 160.15 ms | Exit: 0 | Stop: -
+Elapsed: 164.17 ms | Exit: 0 | Stop: -
 Coverage: 3/3 completed; 0 inconclusive; 0 skipped; 0 errors
 
 Observed probes (all attempts; replies do not imply DNS success)
@@ -21,5 +21,5 @@ Full values and every attempt: --detail full --json (observations[].answers).
 Repeat samples (cache state unknown; latency in ms)
 Path                        Replies   Failed    Cancelled   p50         p95
 --------------------------  --------  --------  ----------  ----------  ----------
-fixture                     3         0         0           0.36        -
+fixture                     3         0         0           0.32        -
 p95 needs 20 successful samples; '-' means unavailable.

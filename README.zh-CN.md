@@ -19,7 +19,7 @@ dnsprobe example.com @https://dns.google/dns-query --pretty
 需要 Python **3.11+**。可直接从 GitHub 安装：
 
 ```sh
-uv tool install git+https://github.com/VincentJiang06/dns-probe.git@v1.2.0
+uv tool install git+https://github.com/VincentJiang06/dns-probe.git@v1.2.1
 ```
 
 或克隆项目：
@@ -148,7 +148,7 @@ uv run --no-sync python scripts/check_distribution.py
 uv run --no-sync python scripts/prepare_release.py --require-license --output release
 ```
 
-测试使用离线 DNS 报文与本地 UDP/TCP/TLS/HTTPS/QUIC 服务。GitHub CI 已在 macOS/Linux 的 Python 3.11/3.14 上分别通过全部 187 项测试、构建和 wheel 安装检查。Windows 仍为实验性：首次 CI 有 9 项失败，涉及发现阶段预算与平台相关测试。实际记录和边界见 [验证](docs/VALIDATION-1.2.md)。
+测试使用离线 DNS 报文与本地 UDP/TCP/TLS/HTTPS/QUIC 服务。GitHub CI 已在 macOS/Linux 的 Python 3.11/3.14 上分别通过全部 187 项测试、构建和 wheel 安装检查。Windows 仍为实验性：首次 CI 有 9 项失败，涉及发现阶段预算与平台相关测试。实际记录和边界见 [验证](docs/VALIDATION-1.2.1.md)。
 
 源码导出采用明确文件范围与 SHA-256 清单，排除本地网络报告和无关文件。参阅 [发布说明](docs/RELEASING.md)、[贡献](CONTRIBUTING.md)、[安全](SECURITY.md)、[变更记录](CHANGELOG.md)。
 

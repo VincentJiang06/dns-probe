@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
-  "engine_version": "1.2.0",
+  "engine_version": "1.2.1",
   "catalog_version": "2026-09-07",
   "ruleset_version": "1",
   "profile_version": "1",
-  "run_id": "61555ea5-e957-4145-899f-900fb0070d1f",
-  "started_at": "2026-09-07T13:48:11.530644Z",
-  "duration_ms": 160.149,
+  "run_id": "3bbb59d7-fced-4e1a-ae88-dea85e8e8156",
+  "started_at": "2026-09-07T16:17:46.884731Z",
+  "duration_ms": 164.169,
   "execution": {
     "status": "completed",
     "stop_reason": null,
@@ -94,10 +94,10 @@
         "cancelled_count": 0,
         "sample_count": 4,
         "response_rate": 1.0,
-        "p50_ms": 0.492,
+        "p50_ms": 0.342,
         "p95_ms": null,
         "p99_ms": null,
-        "max_ms": 0.93,
+        "max_ms": 0.945,
         "cache_state": "unknown",
         "metric": "attempt_total",
         "rcodes": {
@@ -134,7 +134,7 @@
       "outcome": "response",
       "error": null,
       "timing": {
-        "total_ms": 0.93,
+        "total_ms": 0.945,
         "queue_ms": 0.032
       },
       "attempt_index": 0,
@@ -175,7 +175,7 @@
       "edns_options": [],
       "edns_version": 0,
       "edns_payload": 8192,
-      "response_wire_b64": "Xn2BAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "response_wire_b64": "5+eBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
       "records_truncated": false,
       "timeout_ms": 800
     },
@@ -189,8 +189,8 @@
       "outcome": "response",
       "error": null,
       "timing": {
-        "total_ms": 0.36,
-        "queue_ms": 0.016
+        "total_ms": 0.366,
+        "queue_ms": 0.015
       },
       "attempt_index": 0,
       "sample_kind": "repeat_observed",
@@ -230,7 +230,7 @@
       "edns_options": [],
       "edns_version": 0,
       "edns_payload": 8192,
-      "response_wire_b64": "6aCBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "response_wire_b64": "TSaBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
       "records_truncated": false,
       "timeout_ms": 800
     },
@@ -244,8 +244,8 @@
       "outcome": "response",
       "error": null,
       "timing": {
-        "total_ms": 0.341,
-        "queue_ms": 0.013
+        "total_ms": 0.317,
+        "queue_ms": 0.01
       },
       "attempt_index": 0,
       "sample_kind": "repeat_observed",
@@ -285,7 +285,7 @@
       "edns_options": [],
       "edns_version": 0,
       "edns_payload": 8192,
-      "response_wire_b64": "aiSBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "response_wire_b64": "nfeBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
       "records_truncated": false,
       "timeout_ms": 800
     },
@@ -299,8 +299,8 @@
       "outcome": "response",
       "error": null,
       "timing": {
-        "total_ms": 0.625,
-        "queue_ms": 0.014
+        "total_ms": 0.297,
+        "queue_ms": 0.012
       },
       "attempt_index": 0,
       "sample_kind": "repeat_observed",
@@ -340,7 +340,7 @@
       "edns_options": [],
       "edns_version": 0,
       "edns_payload": 8192,
-      "response_wire_b64": "RYqBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "response_wire_b64": "i8WBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
       "records_truncated": false,
       "timeout_ms": 800
     },
@@ -354,8 +354,8 @@
       "outcome": "response",
       "error": null,
       "timing": {
-        "total_ms": 0.705,
-        "queue_ms": 97.983
+        "total_ms": 0.776,
+        "queue_ms": 99.922
       },
       "attempt_index": 0,
       "sample_kind": "diagnostic",
@@ -395,7 +395,7 @@
       "edns_options": [],
       "edns_version": 0,
       "edns_payload": 8192,
-      "response_wire_b64": "mneBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
+      "response_wire_b64": "TvaBAAABAAEAAAABB2V4YW1wbGUEdGVzdAAAAQABwAwAAQABAAAAPAAEwAACCgAAKSAAAAAAAAAA",
       "records_truncated": false,
       "timeout_ms": 800
     }
@@ -430,7 +430,7 @@
     "resolvers": [
       {
         "id": "fixture",
-        "endpoint": "udp://127.0.0.1:55255",
+        "endpoint": "udp://127.0.0.1:49270",
         "bootstrap_ips": []
       }
     ],
@@ -451,7 +451,7 @@
     "expectations": [],
     "fail_on": "error"
   },
-  "implementation_fingerprint": "77f896425f8b972293059c715f2a41cdd3e1214b2819245e8322272f164a23f5",
+  "implementation_fingerprint": "fd4f74a06a611067d255dd86c0cf884fe5986ff4d2d42bb1146b5b5861163d35",
   "plan": {
     "profile": "quick",
     "workload": "general",
@@ -463,7 +463,7 @@
     "paths": [
       {
         "id": "fixture",
-        "endpoint": "udp://127.0.0.1:55255",
+        "endpoint": "udp://127.0.0.1:49270",
         "bootstrap_ips": [],
         "source": "explicit"
       }
@@ -510,10 +510,10 @@
       "cancelled_count": 0,
       "sample_count": 3,
       "response_rate": 1.0,
-      "p50_ms": 0.36,
+      "p50_ms": 0.317,
       "p95_ms": null,
       "p99_ms": null,
-      "max_ms": 0.625,
+      "max_ms": 0.366,
       "cache_state": "unknown",
       "metric": "attempt_total",
       "rcodes": {
@@ -526,5 +526,5 @@
     "auxiliary_calls": 0,
     "system_wire_attempts_observable": false
   },
-  "config_hash": "567a440236b70f0f61606a41b06f7d4078f37fa1b6871c4439f9058967300a2b"
+  "config_hash": "cf23c9f5375c64cd1ff6ffb7bff91e1ebc42b640f0e51940c2cd86d5e165324c"
 }

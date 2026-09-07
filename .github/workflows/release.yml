@@ -7,8 +7,10 @@ permissions:
 jobs:
   verify:
     uses: ./.github/workflows/tests.yml
+  privacy:
+    uses: ./.github/workflows/security.yml
   release:
-    needs: verify
+    needs: [verify, privacy]
     runs-on: ubuntu-latest
     timeout-minutes: 15
     permissions:
@@ -27,6 +29,17 @@ jobs:
       - run: uv run --no-sync python -m build --no-isolation
       - run: uv run --no-sync python scripts/check_distribution.py
       - run: uv run --no-sync python scripts/prepare_release.py --output release --require-license
+      - uses: ./.github/actions/setup-gitleaks
+      - name: Scan unpacked release assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          scan_dir="$RUNNER_TEMP/release-scan"
+          mkdir -p "$scan_dir/sdist"
+          unzip -q dist/*.whl -d "$scan_dir/wheel"
+          tar -xzf dist/*.tar.gz -C "$scan_dir/sdist"
+          unzip -q release/dns-probe-source.zip -d "$scan_dir/source"
+          gitleaks dir "$scan_dir" --config .github/gitleaks.toml --ignore-gitleaks-allow --redact --no-banner
       - name: Create reviewable GitHub draft
         env:
           GH_TOKEN: ${{ github.token }}

@@ -1,0 +1,14 @@
+title = "DNS Probe publication checks"
+
+[extend]
+useDefault = true
+
+[[rules]]
+id = "personal-unix-home-path"
+description = "Do not publish personal absolute home directory paths"
+regex = '''(?:/Users|/home)/[A-Za-z0-9_.-]+/'''
+
+[[rules]]
+id = "personal-windows-home-path"
+description = "Do not publish personal Windows profile paths"
+regex = '''(?i)[A-Z]:\\Users\\[A-Za-z0-9_.-]+\\'''
