@@ -18,6 +18,8 @@ The export command never stages, commits or uploads files. For a new public repo
 
 ## GitHub project setup
 
+The public repository is [VincentJiang06/dns-probe](https://github.com/VincentJiang06/dns-probe). The initial repository creation below is only needed for a new fork or a different destination.
+
 Create the repository under the intended owner, select its visibility and push the reviewed `main` branch. Configure the GitHub description as:
 
 > One-command DNS diagnostics with readable answers, bounded tests, and JSON evidence.

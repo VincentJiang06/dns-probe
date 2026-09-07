@@ -16,7 +16,20 @@ The command is **`dnsprobe`**; the Python package is **`dns-probe`**. This is an
 
 ## Install
 
-Python **3.11+** is required. From this source checkout:
+Python **3.11+** is required. Install directly from GitHub with [uv](https://docs.astral.sh/uv/):
+
+```sh
+uv tool install git+https://github.com/VincentJiang06/dns-probe.git@v1.2.0
+```
+
+Or clone and install the source:
+
+```sh
+git clone https://github.com/VincentJiang06/dns-probe.git
+cd dns-probe
+```
+
+From the checkout:
 
 ```sh
 uv tool install .
@@ -26,7 +39,7 @@ dnsprobe example.com --human
 
 With pip, run `python -m pip install .` inside a virtual environment. For development, use `uv sync --locked` and `uv run --no-sync dnsprobe example.com --human`. Installation uses [uv](https://docs.astral.sh/uv/) or pip; subsequent calls run `dnsprobe` directly.
 
-PyPI, Homebrew and prebuilt native binaries are not published yet. Install from this checkout or a verified wheel. If upgrading from the earlier local `dnsprobe-agent` package, see [migration](LEGACY_MIGRATION.md).
+PyPI, Homebrew and prebuilt native binaries are not published yet. Install from GitHub or a verified wheel from [Releases](https://github.com/VincentJiang06/dns-probe/releases). If upgrading from the earlier local `dnsprobe-agent` package, see [migration](LEGACY_MIGRATION.md).
 
 ## Everyday commands
 

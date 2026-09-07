@@ -16,7 +16,20 @@ dnsprobe example.com @https://dns.google/dns-query --pretty
 
 ## 安装
 
-需要 Python **3.11+**。在本项目目录执行：
+需要 Python **3.11+**。可直接从 GitHub 安装：
+
+```sh
+uv tool install git+https://github.com/VincentJiang06/dns-probe.git@v1.2.0
+```
+
+或克隆项目：
+
+```sh
+git clone https://github.com/VincentJiang06/dns-probe.git
+cd dns-probe
+```
+
+在本项目目录执行：
 
 ```sh
 uv tool install .
@@ -26,7 +39,7 @@ dnsprobe example.com --human
 
 也可以在虚拟环境中执行 `python -m pip install .`。开发时使用 `uv sync --locked`，然后 `uv run --no-sync dnsprobe example.com --human`。安装完成后直接调用 `dnsprobe`，不必每次启动包管理器。
 
-目前尚未发布 PyPI、Homebrew 包或独立原生二进制；请从本源码目录或经过校验的 wheel 安装。旧的本地 `dnsprobe-agent` 包升级方法见 [迁移说明](LEGACY_MIGRATION.md)。
+目前尚未发布 PyPI、Homebrew 包或独立原生二进制；请从 GitHub 源码或 [Releases](https://github.com/VincentJiang06/dns-probe/releases) 中经过校验的 wheel 安装。旧的本地 `dnsprobe-agent` 包升级方法见 [迁移说明](LEGACY_MIGRATION.md)。
 
 ## 日常使用
 

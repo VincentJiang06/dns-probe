@@ -30,9 +30,9 @@ DNS Probe 以 **一次有预算的调用，产出诊断、覆盖范围、证据�
 
 ## 发布与命名
 
-[ProjectDiscovery 的 dnsprobe](https://github.com/projectdiscovery/dnsprobe) 已有同名仓库且处于归档状态。本项目与其无关联。产品名采用 **DNS Probe**，建议仓库名 **dns-probe**，Python distribution 为 `dns-probe`，console command 为 `dnsprobe`。GitHub 仓库由 owner 命名空间区分，无需在产品标题增加 Agent。包名尚未在 PyPI 发布或预留。安装前需留意机器上是否已有其他同名命令。
+[ProjectDiscovery 的 dnsprobe](https://github.com/projectdiscovery/dnsprobe) 已有同名仓库且处于归档状态。本项目与其无关联。产品名采用 **DNS Probe**，仓库名 **dns-probe**，Python distribution 为 `dns-probe`，console command 为 `dnsprobe`。GitHub 仓库由 owner 命名空间区分，无需在产品标题增加 Agent。包名尚未在 PyPI 发布或预留。安装前需留意机器上是否已有其他同名命令。
 
-许可证已由维护者选定为 [MIT](../LICENSE)。仓库地址在创建远端后填写。README 不展示不存在的 PyPI、Homebrew 或 GitHub release 徽章，不把尚未运行的跨平台 CI 说成已通过。使用 GitHub draft release 先检查制品，是官方支持的发布流程：[GitHub release 管理文档](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)。
+许可证已由维护者选定为 [MIT](../LICENSE)。公开仓库为 [VincentJiang06/dns-probe](https://github.com/VincentJiang06/dns-probe)。README 不展示不存在的 PyPI、Homebrew 或 GitHub release 徽章，不把尚未运行的跨平台 CI 说成已通过。使用 GitHub draft release 先检查制品，是官方支持的发布流程：[GitHub release 管理文档](https://docs.github.com/en/repositories/releasing-projects-on-github/managing-releases-in-a-repository)。
 
 ## 基于什么实现
 
