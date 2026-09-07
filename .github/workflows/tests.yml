@@ -37,7 +37,7 @@ jobs:
           uv pip install --python "$wheel_python" dist/*.whl
           "$wheel_python" -I -m dnsprobe capabilities --json
           "$wheel_python" -I -m dnsprobe schema --kind request --json
-      - uses: actions/upload-artifact@v4
+      - uses: actions/upload-artifact@v7
         if: always()
         with:
           name: tests-${{ matrix.os }}-py${{ matrix.python }}
