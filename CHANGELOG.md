@@ -1,7 +1,8 @@
 # Changelog
 
-## 1.2.0 — 2026-09-07
+## 1.2.0 — 2026-09-08
 
+- Publish the MIT project on GitHub; macOS/Linux CI passes all 187 tests on Python 3.11/3.14. Windows remains experimental with 9 known CI failures.
 - Name the product DNS Probe and Python distribution `dns-probe`; keep `dnsprobe` and `dnstk` commands. Adopt MIT licensing.
 - Accept positional domains, uppercase record types after a name and `@resolver` shortcuts; add `-d/-t/-r` and `--human`. Preserve default JSON and named options.
 - Show deduplicated DNS answers with owner, type, TTL and resolver path in bounded human output; retain full records in JSON.

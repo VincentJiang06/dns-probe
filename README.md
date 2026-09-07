@@ -148,7 +148,7 @@ uv run --no-sync python scripts/check_distribution.py
 uv run --no-sync python scripts/prepare_release.py --require-license --output release
 ```
 
-Tests use offline DNS messages and loopback UDP/TCP/TLS/HTTPS/QUIC servers. CI is configured for Python 3.11/3.14 on macOS and Linux, with visible experimental Windows jobs. Configured platforms are not a claim that CI has already run. Local verification is recorded in [validation](docs/VALIDATION-1.2.md).
+Tests use offline DNS messages and loopback UDP/TCP/TLS/HTTPS/QUIC servers. GitHub CI passed all 187 tests, package builds and wheel smoke checks on macOS and Linux with Python 3.11/3.14. Windows remains experimental: its initial CI run has 9 failures in discovery/deadline and platform-dependent test cases. See [validation](docs/VALIDATION-1.2.md) for actual results and limits.
 
 The source exporter produces an allowlisted ZIP with SHA-256 hashes. Local network reports and unrelated workspace files are excluded. See [releasing](docs/RELEASING.md), [contributing](CONTRIBUTING.md), [security](SECURITY.md) and [changelog](CHANGELOG.md).
 

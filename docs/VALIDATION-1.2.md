@@ -35,8 +35,8 @@
 
 ## 平台与发布限制
 
-Linux/Windows 的 GitHub Actions 配置已准备，本会话尚未取得远端执行结果。Windows 仍为实验性任务。Docker 客户端存在，但本机 daemon socket 不存在，未执行镜像构建或容器实测。
+2026-09-08（Asia/Shanghai）已取得 [GitHub Actions 实测结果](https://github.com/VincentJiang06/dns-probe/actions/runs/34141076804)：macOS 与 Ubuntu 的 Python 3.11/3.14 四个任务均为 187 tests、0 failures、0 skipped，并通过构建、schema 和 wheel 安装检查。Windows 两个 Python 版本均为 178 passed、9 failed，继续作为可见的实验性任务。失败集中在系统发现消耗短预算、回环网卡枚举假设，以及 Windows 进程存活检测；未通过的平台不计为支持认证。Docker 客户端存在，但本机 daemon socket 不存在，未执行镜像构建或容器实测。
 
 公开示例由本地合成 DNS 服务生成，环境发现替换为明确标注的 fixture，避免导出真实机器信息。公网冒烟结果如果运行，只写入忽略的本地诊断目录，不作为示例或解析器排名。
 
-本地 Git 和发布文件准备不代表已经创建远端仓库、推送源码或发布 PyPI 包。
+公开源码现位于 [VincentJiang06/dns-probe](https://github.com/VincentJiang06/dns-probe)。GitHub Release 提供 Python wheel、sdist、源码 ZIP 与校验和；尚未发布 PyPI 包。

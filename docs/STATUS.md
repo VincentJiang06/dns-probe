@@ -29,7 +29,7 @@
 | Workload | 保留香港/大陆/国际域名场景；没有恢复历史 45/40/15 加权综合评分，避免缺组时得出失真排名。 |
 | 自动追加 | 基础失败有界重试、TC 触发 TCP；深入项目按 profile/显式列表运行，没有依赖 LLM 的开放式追加。 |
 | 接口 / 系统路径 | interface 绑定选定接口的源地址，不能保证内核实际从该接口发包。原生系统解析不支持强制接口；未知 RCODE/TTL/AD/upstream 留空。原生只支持 A/AAAA，其他类型明确 skipped；自动模式有适用 wire DNS 时由 wire 路径承担必要检查。显式 @system 查询其他类型为未完成，不误报 DNS 故障。 |
-| 平台 | macOS 已做实际协议和进程验收；Linux/Windows 有发现解析 fixture 和 CI 矩阵，尚未在本次会话获得实机 CI 结果。Windows 标为 experimental。Linux 使用 resolvectl 状态 fallback，不声称完成 D-Bus 原生集成。 |
+| 平台 | macOS/Linux 的 GitHub CI 已在 Python 3.11/3.14 分别通过 187 项测试、构建与 wheel 安装检查。Windows 两个 Python 版本均有 9 项失败（发现预算、网卡枚举与进程检测等），继续标为 experimental；详见 VALIDATION-1.2.md。Linux 使用 resolvectl 状态 fallback，不声称完成 D-Bus 原生集成。 |
 
 这些边界是可观察性、外部基础设施或后续专业功能的边界；接口会显式暴露它们。有关运行命令以 README 和 `dnsprobe --help` / `dnsprobe run --help` 为准。
 
